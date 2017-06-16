@@ -1,0 +1,39 @@
+	DEBUG devsim CreateInstance START {
+	DEBUG devsim VK_LAYER_LUNARG_device_simulation version 1.1.0
+	DEBUG devsim 		envar VK_DEVSIM_FILENAME = "/home/mikew/gits/github.com/LunarG/VulkanTools/build/tests/devsim_test1.json"
+	DEBUG devsim PDD Create() physical_device 0x1b1baa0 pdd 0x1c448c0
+	DEBUG devsim JsonCpp version 1.8.0
+	DEBUG devsim 		JsonLoader::LoadFile() OK
+	DEBUG devsim 		JsonLoader::IdentifySchema()
+	DEBUG devsim Document schema "https://schema.khronos.org/vulkan/devsim_1_0_0.json#" is schema_id 1
+	DEBUG devsim 		JsonLoader::GetValue(VkPhysicalDeviceProperties)
+	DEBUG devsim 		JsonLoader::GetValue(VkPhysicalDeviceLimits)
+	DEBUG devsim WARN "maxBoundDescriptorSets" JSON value (900001013) is greater than existing value (8)
+	DEBUG devsim WARN "maxPerStageDescriptorSamplers" JSON value (900001014) is greater than existing value (4000)
+	DEBUG devsim WARN "maxPerStageDescriptorUniformBuffers" JSON value (900001015) is greater than existing value (12)
+	DEBUG devsim WARN "maxPerStageDescriptorStorageBuffers" JSON value (900001016) is greater than existing value (4096)
+	DEBUG devsim WARN "maxPerStageDescriptorSampledImages" JSON value (900001017) is greater than existing value (16384)
+	DEBUG devsim WARN "maxPerStageDescriptorStorageImages" JSON value (900001018) is greater than existing value (16384)
+	DEBUG devsim WARN "maxPerStageDescriptorInputAttachments" JSON value (900001019) is greater than existing value (8)
+	DEBUG devsim WARN "maxPerStageResources" JSON value (900001020) is greater than existing value (53268)
+	DEBUG devsim WARN "maxDescriptorSetSamplers" JSON value (900001021) is greater than existing value (4000)
+	DEBUG devsim WARN "maxDescriptorSetUniformBuffers" JSON value (900001022) is greater than existing value (72)
+	DEBUG devsim WARN "maxDescriptorSetUniformBuffersDynamic" JSON value (900001023) is greater than existing value (72)
+	DEBUG devsim WARN "maxDescriptorSetStorageBuffers" JSON value (900001024) is greater than existing value (4096)
+	DEBUG devsim WARN "maxDescriptorSetStorageBuffersDynamic" JSON value (900001025) is greater than existing value (16)
+	DEBUG devsim WARN "maxDescriptorSetSampledImages" JSON value (900001026) is greater than existing value (98304)
+	DEBUG devsim WARN "maxDescriptorSetStorageImages" JSON value (900001027) is greater than existing value (98304)
+	DEBUG devsim WARN "maxDescriptorSetInputAttachments" JSON value (900001028) is greater than existing value (8)
+	DEBUG devsim 		JsonLoader::GetValue(VkPhysicalDeviceSparseProperties)
+	DEBUG devsim 		JsonLoader::GetValue(VkPhysicalDeviceFeatures)
+	DEBUG devsim 		JsonLoader::GetValue(VkPhysicalDeviceMemoryProperties)
+	DEBUG devsim 		JsonLoader::GetValue(ArrayOfVkFormatProperties)
+	DEBUG devsim 		JsonLoader::GetValue(ArrayOfVkQueueFamilyProperties)
+	DEBUG devsim CreateInstance END instance 0x1a1d120 }
+	DEBUG devsim GetPhysicalDeviceProperties physicalDevice 0x1b1baa0 pdd 0x1c448c0
+	DEBUG devsim GetPhysicalDeviceFeatures physicalDevice 0x1b1baa0 pdd 0x1c448c0
+	DEBUG devsim GetPhysicalDeviceMemoryProperties physicalDevice 0x1b1baa0 pdd 0x1c448c0
+	DEBUG devsim EnumerateDeviceExtensionProperties physicalDevice 0x1b1baa0 pLayerName "(null)"
+	DEBUG devsim EnumerateDeviceExtensionProperties physicalDevice 0x1b1baa0 pLayerName "(null)"
+	DEBUG devsim DestroyInstance instance 0x1a1d120
+Wrote file device_simulation_layer_test_1.json for device device_simulation_layer_test_1.

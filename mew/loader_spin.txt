@@ -1,0 +1,222 @@
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/icd.d:/etc/xdg/vulkan/icd.d:/usr/local/etc/vulkan/icd.d:/etc/vulkan/icd.d:/usr/share/ubuntu/vulkan/icd.d:/usr/local/share//vulkan/icd.d:/usr/share//vulkan/icd.d:/var/lib/snapd/desktop/vulkan/icd.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/icd.d
+
+DEBUG: Build ICD instance extension list
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/icd.d:/etc/xdg/vulkan/icd.d:/usr/local/etc/vulkan/icd.d:/etc/vulkan/icd.d:/usr/share/ubuntu/vulkan/icd.d:/usr/local/share//vulkan/icd.d:/usr/share//vulkan/icd.d:/var/lib/snapd/desktop/vulkan/icd.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/icd.d
+
+DEBUG: Build ICD instance extension list
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+DEBUG: Searching the following paths for manifest files: /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt
+
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d:/etc/xdg/vulkan/implicit_layer.d:/usr/local/etc/vulkan/implicit_layer.d:/etc/vulkan/implicit_layer.d:/usr/share/ubuntu/vulkan/implicit_layer.d:/usr/local/share//vulkan/implicit_layer.d:/usr/share//vulkan/implicit_layer.d:/var/lib/snapd/desktop/vulkan/implicit_layer.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/implicit_layer.d
+
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_api_dump.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_screenshot.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_monitor.json, version "1.0.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_device_simulation.json, version "1.1.0"
+INFO: Found manifest file /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/VkLayer_vktrace_layer.json, version "1.0.0"
+DEBUG: Adding VK_LAYER_LUNARG_standard_validation using the loader legacy path.  This is not an error.
+INFO: Meta-layer VK_LAYER_LUNARG_standard_validation all 0 component layers appear to be valid.
+DEBUG: Searching the following paths for manifest files: /etc/xdg/xdg-ubuntu/vulkan/icd.d:/etc/xdg/vulkan/icd.d:/usr/local/etc/vulkan/icd.d:/etc/vulkan/icd.d:/usr/share/ubuntu/vulkan/icd.d:/usr/local/share//vulkan/icd.d:/usr/share//vulkan/icd.d:/var/lib/snapd/desktop/vulkan/icd.d
+
+DEBUG: Searching the following path for manifest files: /home/mew/.local/share/vulkan/icd.d
+
+DEBUG: Build ICD instance extension list
+DEBUG: Loading layer library /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/./libVkLayer_device_simulation.so
+INFO: Insert instance layer VK_LAYER_LUNARG_device_simulation (/home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/./libVkLayer_device_simulation.so)
+DEBUG: Unloading layer library /home/mew/gits/github.com/mikew-lunarg/VulkanTools/build/tests/../layersvt/./libVkLayer_device_simulation.so
+	DEBUG devsim CreateInstance START {

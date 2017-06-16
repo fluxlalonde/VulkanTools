@@ -1,0 +1,64 @@
+VkPresentModeKHR
+
+envar VK_DEVSIM_DEBUG_ENABLE:
+    1 for super basic output, like just devsim version and file loaded.
+    2 for any more detail
+
+IMPORTANT RELEASE PROCESS STUFF:
+- update changelog
+- bump version number in .cpp and .json
+
+=============================================================================
+Additional by gpuinfo, beyond what is output by vkjson; is it useful?
+    'environment'
+    'extended'
+    'platformdetails'
+    'surfacecapabilites'
+=============================================================================
+
+void vkGetPhysicalDeviceQueueFamilyProperties(
+    VkPhysicalDevice                            physicalDevice,
+    uint32_t*                                   pQueueFamilyPropertyCount,
+    VkQueueFamilyProperties*                    pQueueFamilyProperties);
+
+void vkGetPhysicalDeviceMemoryProperties(
+    VkPhysicalDevice                            physicalDevice,
+    VkPhysicalDeviceMemoryProperties*           pMemoryProperties);
+
+void vkGetPhysicalDeviceFormatProperties(
+    VkPhysicalDevice                            physicalDevice,
+    VkFormat                                    format,
+    VkFormatProperties*                         pFormatProperties);
+
+
+VkResult vkGetPhysicalDeviceImageFormatProperties(
+    VkPhysicalDevice                            physicalDevice,
+    VkFormat                                    format,
+    VkImageType                                 type,
+    VkImageTiling                               tiling,
+    VkImageUsageFlags                           usage,
+    VkImageCreateFlags                          flags,
+    VkImageFormatProperties*                    pImageFormatProperties);
+struct VkImageFormatProperties {
+    VkExtent3D            maxExtent;
+    uint32_t              maxMipLevels;
+    uint32_t              maxArrayLayers;
+    VkSampleCountFlags    sampleCounts;
+    VkDeviceSize          maxResourceSize;
+}
+
+void vkGetPhysicalDeviceSparseImageFormatProperties(
+    VkPhysicalDevice                            physicalDevice,
+    VkFormat                                    format,
+    VkImageType                                 type,
+    VkSampleCountFlagBits                       samples,
+    VkImageUsageFlags                           usage,
+    VkImageTiling                               tiling,
+    uint32_t*                                   pPropertyCount,
+    VkSparseImageFormatProperties*              pProperties);
+struct VkSparseImageFormatProperties {
+    VkImageAspectFlags          aspectMask;
+    VkExtent3D                  imageGranularity;
+    VkSparseImageFormatFlags    flags;
+}
+

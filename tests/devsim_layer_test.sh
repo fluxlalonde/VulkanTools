@@ -23,7 +23,7 @@ export LD_LIBRARY_PATH=${PWD}/../loader:${LD_LIBRARY_PATH}
 export VK_LAYER_PATH=${PWD}/../layersvt
 export VK_INSTANCE_LAYERS="VK_LAYER_LUNARG_device_simulation"
 
-#export VK_DEVSIM_DEBUG_ENABLE="1"
+export VK_DEVSIM_DEBUG_ENABLE="1"
 #export VK_DEVSIM_EXIT_ON_ERROR="1"
 #export VK_LOADER_DEBUG="all"
 
@@ -44,8 +44,8 @@ ${VKJSON_INFO} > ${FILENAME_01_STDOUT}
 NUM_LINES=$(cut -f1 -d' ' <(wc -l ${FILENAME_01_GOLD}))
 diff ${FILENAME_01_GOLD} <(head -n ${NUM_LINES} ${FILENAME_01_RESULT}) >> ${FILENAME_01_STDOUT}
 RES=$?
-rm ${FILENAME_01_RESULT}
-rm ${FILENAME_01_STDOUT}
+#rm ${FILENAME_01_RESULT}
+#rm ${FILENAME_01_STDOUT}
 
 #############################################################################
 

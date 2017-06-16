@@ -1,0 +1,5 @@
+g f ; g reset --hard origin
+(~/vt/BUILD_RELEASE/layers; touch ../../layers/spoof.cpp; make VERBOSE=1 VkLayer_spoof)
+(cd ~/vt; ./RUN_DEVSIM_TEST.sh )
+
+(cd ~/vt/layersvt; cp device_simulation.cpp x.cpp; g a x.cpp; g fmt; g reset x.cpp; mv x.cpp device_simulation.cpp)

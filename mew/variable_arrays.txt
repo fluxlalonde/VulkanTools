@@ -1,0 +1,8 @@
+"memoryTypes": {"type": "array", "maxItems": 32, "items": {"$ref": "#/definitions/VkMemoryType"}},
+"memoryHeaps": {"type": "array", "maxItems": 16, "items": {"$ref": "#/definitions/VkMemoryHeap"}}
+
+"ArrayOfVkExtensionProperties": { "type": "array", "uniqueItems": true, "items": {"$ref": "#/definitions/VkExtensionProperties"} },
+"ArrayOfVkLayerProperties": { "type": "array", "uniqueItems": true, "items": {"$ref": "#/definitions/VkLayerProperties"} },
+"ArrayOfVkQueueFamilyProperties": { "type": "array", "uniqueItems": true, "items": {"$ref": "#/definitions/VkQueueFamilyProperties"} },
+"ArrayOfVkFormatProperties": { "type": "array", "uniqueItems": true, "items": {"$ref": "#/definitions/VkFormatProperties"} },
+
