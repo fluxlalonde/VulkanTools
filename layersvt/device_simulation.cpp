@@ -236,6 +236,7 @@ std::mutex global_lock;  // Enforce thread-safety for this layer's containers.
 uint32_t loader_layer_iface_version = CURRENT_LOADER_LAYER_INTERFACE_VERSION;
 
 typedef std::vector<VkQueueFamilyProperties> ArrayOfVkQueueFamilyProperties;
+typedef std::vector<VkFormatProperties> ArrayOfVkFormatProperties;
 
 // PhysicalDeviceData : creates and manages the simulated device configurations //////////////////////////////////////////////////
 
@@ -265,6 +266,7 @@ class PhysicalDeviceData {
     VkPhysicalDeviceFeatures physical_device_features_;
     VkPhysicalDeviceMemoryProperties physical_device_memory_properties_;
     ArrayOfVkQueueFamilyProperties arrayof_queue_family_properties_;
+    ArrayOfVkFormatProperties arrayof_format_properties_;
 
    private:
     PhysicalDeviceData() = delete;
@@ -311,6 +313,7 @@ class JsonLoader {
     void GetValue(const Json::Value &parent, const char *name, VkPhysicalDeviceMemoryProperties *dest);
     void GetValue(const Json::Value &parent, const char *name, VkExtent3D *dest);
     void GetValue(const Json::Value &parent, int index, VkQueueFamilyProperties *dest);
+    void GetValue(const Json::Value &parent, const char *name, VkFormatProperties *dest);
 
     // For use as warn_func in GET_VALUE_WARN().  Return true if warning occurred.
     static bool WarnIfGreater(const char *name, const uint64_t new_value, const uint64_t old_value) {
@@ -479,6 +482,20 @@ class JsonLoader {
         return dest->size();
     }
 
+    int GetValue(const Json::Value &parent, const char *name, ArrayOfVkFormatProperties *dest){
+    }
+/*
+void JsonLoader::GetValue(const Json::Value &parent, const char *name, ArrayOfVkFormatProperties *dest) {
+    DebugPrintf("\t\tJsonLoader::GetValue(ArrayOfVkFormatProperties)\n");
+    const Json::Value value = parent[name];
+    if (value.type() != Json::arrayValue) {
+        return;
+    }
+    // TODO
+}
+*/
+
+
     PhysicalDeviceData &pdd_;
 };
 
@@ -513,6 +530,7 @@ bool JsonLoader::LoadFile(const char *filename) {
             GetValue(root, "VkPhysicalDeviceFeatures", &pdd_.physical_device_features_);
             GetValue(root, "VkPhysicalDeviceMemoryProperties", &pdd_.physical_device_memory_properties_);
             GetArray(root, "ArrayOfVkQueueFamilyProperties", &pdd_.arrayof_queue_family_properties_);
+            GetArray(root, "ArrayOfVkFormatProperties", &pdd_.arrayof_format_properties_);
             break;
         case SchemaId::kUnknown:
         default:
@@ -818,6 +836,18 @@ void JsonLoader::GetValue(const Json::Value &parent, const char *name, VkPhysica
             }
         }
     }
+}
+
+void JsonLoader::GetValue(const Json::Value &parent, const char *name, VkFormatProperties *dest) {
+    DebugPrintf("\t\tJsonLoader::GetValue(VkFormatProperties)\n");
+    const Json::Value value = parent[name];
+    if (value.type() != Json::objectValue) {
+        return;
+    }
+    // TODO GET_VALUE(formatID);
+    GET_VALUE(linearTilingFeatures);
+    GET_VALUE(optimalTilingFeatures);
+    GET_VALUE(bufferFeatures);
 }
 
 #undef GET_VALUE
