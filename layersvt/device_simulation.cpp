@@ -62,7 +62,7 @@ namespace {
 // For any changes, at least increment the patch level.
 // When making ANY changes to the version, be sure to also update layersvt/{linux|windows}/VkLayer_device_simulation.json
 const uint32_t kVersionDevsimMajor = 1;
-const uint32_t kVersionDevsimMinor = 1;
+const uint32_t kVersionDevsimMinor = 2;
 const uint32_t kVersionDevsimPatch = 0;
 const uint32_t kVersionDevsimImplementation = VK_MAKE_VERSION(kVersionDevsimMajor, kVersionDevsimMinor, kVersionDevsimPatch);
 
