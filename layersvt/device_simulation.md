@@ -127,4 +127,5 @@ The DevSim layer itself does very little sanity checking of the configuration fi
 ## Other Resources
 1. http://json.org/
 1. http://json-schema.org/
+1. https://stedolan.github.io/jq/ - an essential tool for JSON processing.
 
