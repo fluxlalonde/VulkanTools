@@ -19,6 +19,7 @@
  *
  * Author: Jon Ashburn <jon@lunarg.com>
  * Author: Peter Lohrmann <peterl@valvesoftware.com>
+ * Author: David Pinedo <david@lunarg.com>
  **************************************************************************/
 #include "vktrace_trace_packet_utils.h"
 #include "vktrace_interconnect.h"
@@ -41,6 +42,7 @@
 #include <mach/mach.h>
 #endif
 
+#include "vk_struct_size_helper.c"
 #include "vktrace_pageguard_memorycopy.h"
 
 static VKTRACE_CRITICAL_SECTION s_packet_index_lock;
@@ -250,6 +252,102 @@ void vktrace_finalize_buffer_address(vktrace_trace_packet_header* pHeader, void*
         // turn ptr into an offset from the packet body
         uint64_t offset = (uint64_t)*ptr_address - (uint64_t)(pHeader->pBody);
         *ptr_address = (void*)offset;
+    }
+}
+
+#define AddPointerWithCountToTracebuffer(_sName, _sPtr, _sCount) \
+    do { \
+        void *pSrc = (void*)(((_sName *)pIn)->_sPtr); \
+        void **pDst = (void **)&(((_sName *)*ppOut)->_sPtr); \
+        uint32_t count = ((_sName *)*ppOut)->_sCount; \
+        vktrace_add_buffer_to_trace_packet(pHeader, pDst, sizeof(_sName) * count, pSrc); \
+        vktrace_finalize_buffer_address(pHeader, pDst); \
+    } while(0)
+
+void vktrace_add_pnext_structs_to_trace_packet(vktrace_trace_packet_header* pHeader, void **ppOut, const void *pIn) {
+    void **ppOutNext;
+    while (pIn) {
+        vktrace_add_buffer_to_trace_packet(pHeader, ppOut, get_struct_size(pIn), pIn);
+        // TODO: Might be able codegen this switch statement
+        switch (((VkApplicationInfo *)*ppOut)->sType) {
+        case VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO_KHX:
+            AddPointerWithCountToTracebuffer(VkDeviceGroupDeviceCreateInfoKHX, pPhysicalDevices, physicalDeviceCount);
+            break;
+        case VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHX:
+            AddPointerWithCountToTracebuffer(VkDeviceGroupRenderPassBeginInfoKHX, pDeviceRenderAreas, deviceRenderAreaCount);
+            break;
+        case VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO_KHX:
+            AddPointerWithCountToTracebuffer(VkDeviceGroupSubmitInfoKHX, pWaitSemaphoreDeviceIndices, waitSemaphoreCount);
+            AddPointerWithCountToTracebuffer(VkDeviceGroupSubmitInfoKHX, pCommandBufferDeviceMasks, commandBufferCount);
+            AddPointerWithCountToTracebuffer(VkDeviceGroupSubmitInfoKHX, pSignalSemaphoreDeviceIndices, signalSemaphoreCount);
+            break;
+        case VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHX:
+            AddPointerWithCountToTracebuffer(VkBindBufferMemoryDeviceGroupInfoKHX, pDeviceIndices, deviceIndexCount);
+            break;
+        case VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHX:
+            AddPointerWithCountToTracebuffer(VkBindImageMemoryDeviceGroupInfoKHX, pDeviceIndices, deviceIndexCount);
+            AddPointerWithCountToTracebuffer(VkBindImageMemoryDeviceGroupInfoKHX, pSFRRects, SFRRectCount);
+            break;
+        case VK_STRUCTURE_TYPE_VALIDATION_FLAGS_EXT:
+            AddPointerWithCountToTracebuffer(VkValidationFlagsEXT, pDisabledValidationChecks, disabledValidationCheckCount);
+            break;
+        case VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NVX:
+            AddPointerWithCountToTracebuffer(VkIndirectCommandsLayoutCreateInfoNVX, pTokens, tokenCount);
+            break;
+        case VK_STRUCTURE_TYPE_CMD_PROCESS_COMMANDS_INFO_NVX:
+            AddPointerWithCountToTracebuffer(VkCmdProcessCommandsInfoNVX, pIndirectCommandsTokens, indirectCommandsTokenCount);
+            break;
+        case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV:
+            AddPointerWithCountToTracebuffer(VkPipelineViewportWScalingStateCreateInfoNV, pViewportWScalings, viewportCount);
+            break;
+        case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV:
+            AddPointerWithCountToTracebuffer(VkPipelineViewportSwizzleStateCreateInfoNV, pViewportSwizzles, viewportCount);
+            break;
+        case VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT:
+            AddPointerWithCountToTracebuffer(VkPipelineDiscardRectangleStateCreateInfoEXT, pDiscardRectangles, discardRectangleCount);
+            break;
+        case VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT:
+            AddPointerWithCountToTracebuffer(VkSampleLocationsInfoEXT, pSampleLocations, sampleLocationsCount);
+            break;
+        case VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT:
+            AddPointerWithCountToTracebuffer(VkRenderPassSampleLocationsBeginInfoEXT, pAttachmentInitialSampleLocations, attachmentInitialSampleLocationsCount);
+            AddPointerWithCountToTracebuffer(VkRenderPassSampleLocationsBeginInfoEXT, pSubpassSampleLocations, postSubpassSampleLocationsCount);
+            break;
+        case VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV:
+            AddPointerWithCountToTracebuffer(VkPipelineCoverageModulationStateCreateInfoNV, pCoverageModulationTable, coverageModulationTableCount);
+            break;
+        case VK_STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO_KHR:
+            AddPointerWithCountToTracebuffer(VkImageFormatListCreateInfoKHR, pViewFormats, viewFormatCount);
+            break;
+        case VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO_KHX:
+            AddPointerWithCountToTracebuffer(VkRenderPassMultiviewCreateInfoKHX, pViewMasks, subpassCount);
+            AddPointerWithCountToTracebuffer(VkRenderPassMultiviewCreateInfoKHX, pViewOffsets, dependencyCount);
+            AddPointerWithCountToTracebuffer(VkRenderPassMultiviewCreateInfoKHX, pCorrelationMasks, correlationMaskCount);
+            break;
+#ifdef WIN32
+        case VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR:
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, pAcquireSyncs, acquireCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, pAcquireKeys, acquireCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, pAcquireTimeouts, acquireCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, pReleaseSyncs, releaseCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, pReleaseKeys, releaseCount);
+            break;
+        case VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV:
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, pAcquireSyncs, acquireCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, pAcquireKeys, acquireCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, pAcquireTimeoutMilliseconds, acquireCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, pReleaseSyncs, releaseCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, pReleaseKeys, releaseCount);
+            break;
+#endif
+        default:
+            vktrace_LogError("Unrecognized pNext structure");
+            break;
+        }
+        ppOutNext = (void **)&(((VkApplicationInfo *)*ppOut)->pNext);
+        vktrace_finalize_buffer_address(pHeader, ppOut);
+        ppOut = ppOutNext;
+        pIn = (void*)(((VkApplicationInfo *)pIn)->pNext);
     }
 }
 
@@ -514,4 +612,108 @@ VkDeviceGroupDeviceCreateInfoKHX* interpret_VkDeviceGroupDeviceCreateInfoKHX(vkt
         }
     }
     return pCreateInfo;
+}
+#define InterpretPointerInPNext(_sName, _sPtrType, _sPtr) \
+    do { \
+        _sName* struct_ptr_cur = (_sName*)struct_ptr; \
+        struct_ptr_cur->_sPtr = (_sPtrType*)vktrace_trace_packet_interpret_buffer_pointer(pHeader, (intptr_t)struct_ptr_cur->_sPtr); \
+    } while(0)
+
+
+void vktrace_interpret_pnext_pointers(vktrace_trace_packet_header* pHeader, void* struct_ptr)
+{
+    if (!struct_ptr)
+        return;
+
+    while (((VkApplicationInfo *)struct_ptr)->pNext) {
+        VkApplicationInfo *pNext = (VkApplicationInfo *)((VkApplicationInfo *)struct_ptr)->pNext;
+        ((VkApplicationInfo *)struct_ptr)->pNext = (void *)vktrace_trace_packet_interpret_buffer_pointer(pHeader, (intptr_t)pNext);
+
+        // Convert pointers in pNext structures
+        switch (((VkApplicationInfo *)(((VkApplicationInfo *)struct_ptr)->pNext))->sType) {
+        case  VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO: {
+                VkDescriptorSetLayoutCreateInfo* struct_ptr_cur = (VkDescriptorSetLayoutCreateInfo*)struct_ptr;
+                struct_ptr_cur->pBindings = (VkDescriptorSetLayoutBinding*)vktrace_trace_packet_interpret_buffer_pointer(pHeader, (intptr_t)struct_ptr_cur->pBindings);
+                for (uint32_t i = 0; i < struct_ptr_cur->bindingCount; i++) {
+                    VkSampler** ppSamplers = (VkSampler**)&(struct_ptr_cur->pBindings[i].pImmutableSamplers);
+                    *ppSamplers = (VkSampler*)vktrace_trace_packet_interpret_buffer_pointer(pHeader, (intptr_t)struct_ptr_cur->pBindings[i].pImmutableSamplers);
+                }
+            }
+            break;
+        case VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO_KHX:
+            InterpretPointerInPNext(VkDeviceGroupDeviceCreateInfoKHX, VkPhysicalDevice, pPhysicalDevices);
+            break;
+        case VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHX:
+            InterpretPointerInPNext(VkDeviceGroupRenderPassBeginInfoKHX, VkRect2D, pDeviceRenderAreas);
+            break;
+        case VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO_KHX:
+            InterpretPointerInPNext(VkDeviceGroupSubmitInfoKHX, uint32_t, pWaitSemaphoreDeviceIndices);
+            InterpretPointerInPNext(VkDeviceGroupSubmitInfoKHX, uint32_t, pCommandBufferDeviceMasks);
+            InterpretPointerInPNext(VkDeviceGroupSubmitInfoKHX, uint32_t, pSignalSemaphoreDeviceIndices);
+            break;
+        case VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHX:
+            InterpretPointerInPNext(VkBindBufferMemoryDeviceGroupInfoKHX, uint32_t, pDeviceIndices);
+            break;
+        case VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHX:
+            InterpretPointerInPNext(VkBindImageMemoryDeviceGroupInfoKHX, uint32_t, pDeviceIndices);
+            InterpretPointerInPNext(VkBindImageMemoryDeviceGroupInfoKHX, VkRect2D, pSFRRects);
+            break;
+        case VK_STRUCTURE_TYPE_VALIDATION_FLAGS_EXT:
+            InterpretPointerInPNext(VkValidationFlagsEXT, VkValidationCheckEXT, pDisabledValidationChecks);
+            break;
+        case VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NVX:
+            InterpretPointerInPNext(VkIndirectCommandsLayoutCreateInfoNVX, VkIndirectCommandsLayoutTokenNVX, pTokens);
+            break;
+        case VK_STRUCTURE_TYPE_CMD_PROCESS_COMMANDS_INFO_NVX:
+            InterpretPointerInPNext(VkCmdProcessCommandsInfoNVX, VkIndirectCommandsTokenNVX, pIndirectCommandsTokens);
+            break;
+        case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV:
+            InterpretPointerInPNext(VkPipelineViewportWScalingStateCreateInfoNV, VkViewportWScalingNV, pViewportWScalings);
+            break;
+        case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV:
+            InterpretPointerInPNext(VkPipelineViewportSwizzleStateCreateInfoNV, VkViewportSwizzleNV, pViewportSwizzles);
+            break;
+        case VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT:
+            InterpretPointerInPNext(VkPipelineDiscardRectangleStateCreateInfoEXT, VkRect2D, pDiscardRectangles);
+            break;
+        case VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT:
+            InterpretPointerInPNext(VkSampleLocationsInfoEXT, VkSampleLocationEXT, pSampleLocations);
+            break;
+        case VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT:
+            InterpretPointerInPNext(VkRenderPassSampleLocationsBeginInfoEXT, VkAttachmentSampleLocationsEXT, pAttachmentInitialSampleLocations);
+            InterpretPointerInPNext(VkRenderPassSampleLocationsBeginInfoEXT, VkSubpassSampleLocationsEXT, pSubpassSampleLocations);
+            break;
+        case VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV:
+            InterpretPointerInPNext(VkPipelineCoverageModulationStateCreateInfoNV, float, pCoverageModulationTable);
+            break;
+        case VK_STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO_KHR:
+            InterpretPointerInPNext(VkImageFormatListCreateInfoKHR, VkFormat, pViewFormats);
+            break;
+        case VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO_KHX:
+            InterpretPointerInPNext(VkRenderPassMultiviewCreateInfoKHX, uint32_t, pViewMasks);
+            InterpretPointerInPNext(VkRenderPassMultiviewCreateInfoKHX, int32_t, pViewOffsets);
+            InterpretPointerInPNext(VkRenderPassMultiviewCreateInfoKHX, uint32_t, pCorrelationMasks);
+            break;
+#ifdef WIN32
+        case VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR:
+            InterpretPointerInPNext(VkWin32KeyedMutexAcquireReleaseInfoKHR, VkDeviceMemory, pAcquireSyncs);
+            InterpretPointerInPNext(VkWin32KeyedMutexAcquireReleaseInfoKHR, uint64_t, pAcquireKeys);
+            InterpretPointerInPNext(VkWin32KeyedMutexAcquireReleaseInfoKHR, uint32_t, pAcquireTimeouts);
+            InterpretPointerInPNext(VkWin32KeyedMutexAcquireReleaseInfoKHR, VkDeviceMemory, pReleaseSyncs);
+            InterpretPointerInPNext(VkWin32KeyedMutexAcquireReleaseInfoKHR, uint64_t, pReleaseKeys);
+            break;
+        case VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV:
+            InterpretPointerInPNext(VkWin32KeyedMutexAcquireReleaseInfoNV, VkDeviceMemory, pAcquireSyncs);
+            InterpretPointerInPNext(VkWin32KeyedMutexAcquireReleaseInfoNV, uint64_t, pAcquireKeys);
+            InterpretPointerInPNext(VkWin32KeyedMutexAcquireReleaseInfoNV, uint32_t, pAcquireTimeoutMilliseconds);
+            InterpretPointerInPNext(VkWin32KeyedMutexAcquireReleaseInfoNV, VkDeviceMemory, pReleaseSyncs);
+            InterpretPointerInPNext(VkWin32KeyedMutexAcquireReleaseInfoNV, uint64_t, pReleaseKeys);
+            break;
+#endif
+        default:
+            vktrace_LogError("Unrecognized pNext structure in trace packet");
+            break;
+        }
+        struct_ptr = (VkApplicationInfo *)((VkApplicationInfo *)struct_ptr)->pNext;
+    }
 }
