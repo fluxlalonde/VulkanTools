@@ -311,7 +311,7 @@ void vktrace_add_pnext_structs_to_trace_packet(vktrace_trace_packet_header* pHea
             break;
         case VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT:
             AddPointerWithCountToTracebuffer(VkRenderPassSampleLocationsBeginInfoEXT, pAttachmentInitialSampleLocations, attachmentInitialSampleLocationsCount);
-            AddPointerWithCountToTracebuffer(VkRenderPassSampleLocationsBeginInfoEXT, pSubpassSampleLocations, postSubpassSampleLocationsCount);
+            AddPointerWithCountToTracebuffer(VkRenderPassSampleLocationsBeginInfoEXT, pPostSubpassSampleLocations, postSubpassSampleLocationsCount);
             break;
         case VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV:
             AddPointerWithCountToTracebuffer(VkPipelineCoverageModulationStateCreateInfoNV, pCoverageModulationTable, coverageModulationTableCount);
@@ -681,7 +681,7 @@ void vktrace_interpret_pnext_pointers(vktrace_trace_packet_header* pHeader, void
             break;
         case VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT:
             InterpretPointerInPNext(VkRenderPassSampleLocationsBeginInfoEXT, VkAttachmentSampleLocationsEXT, pAttachmentInitialSampleLocations);
-            InterpretPointerInPNext(VkRenderPassSampleLocationsBeginInfoEXT, VkSubpassSampleLocationsEXT, pSubpassSampleLocations);
+            InterpretPointerInPNext(VkRenderPassSampleLocationsBeginInfoEXT, VkSubpassSampleLocationsEXT, pPostSubpassSampleLocations);
             break;
         case VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV:
             InterpretPointerInPNext(VkPipelineCoverageModulationStateCreateInfoNV, float, pCoverageModulationTable);
