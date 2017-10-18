@@ -255,12 +255,12 @@ void vktrace_finalize_buffer_address(vktrace_trace_packet_header* pHeader, void*
     }
 }
 
-#define AddPointerWithCountToTracebuffer(_sName, _sPtr, _sCount) \
+#define AddPointerWithCountToTracebuffer(_sName, _sType, _sPtr, _sCount) \
     do { \
         void *pSrc = (void*)(((_sName *)pIn)->_sPtr); \
         void **pDst = (void **)&(((_sName *)*ppOut)->_sPtr); \
         uint32_t count = ((_sName *)*ppOut)->_sCount; \
-        vktrace_add_buffer_to_trace_packet(pHeader, pDst, sizeof(_sName) * count, pSrc); \
+        vktrace_add_buffer_to_trace_packet(pHeader, pDst, sizeof(_sType) * count, pSrc); \
         vktrace_finalize_buffer_address(pHeader, pDst); \
     } while(0)
 
@@ -271,73 +271,73 @@ void vktrace_add_pnext_structs_to_trace_packet(vktrace_trace_packet_header* pHea
         // TODO: Might be able codegen this switch statement
         switch (((VkApplicationInfo *)*ppOut)->sType) {
         case VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO_KHX:
-            AddPointerWithCountToTracebuffer(VkDeviceGroupDeviceCreateInfoKHX, pPhysicalDevices, physicalDeviceCount);
+            AddPointerWithCountToTracebuffer(VkDeviceGroupDeviceCreateInfoKHX, VkPhysicalDevice, pPhysicalDevices, physicalDeviceCount);
             break;
         case VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHX:
-            AddPointerWithCountToTracebuffer(VkDeviceGroupRenderPassBeginInfoKHX, pDeviceRenderAreas, deviceRenderAreaCount);
+            AddPointerWithCountToTracebuffer(VkDeviceGroupRenderPassBeginInfoKHX, VkRect2D, pDeviceRenderAreas, deviceRenderAreaCount);
             break;
         case VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO_KHX:
-            AddPointerWithCountToTracebuffer(VkDeviceGroupSubmitInfoKHX, pWaitSemaphoreDeviceIndices, waitSemaphoreCount);
-            AddPointerWithCountToTracebuffer(VkDeviceGroupSubmitInfoKHX, pCommandBufferDeviceMasks, commandBufferCount);
-            AddPointerWithCountToTracebuffer(VkDeviceGroupSubmitInfoKHX, pSignalSemaphoreDeviceIndices, signalSemaphoreCount);
+            AddPointerWithCountToTracebuffer(VkDeviceGroupSubmitInfoKHX, uint32_t, pWaitSemaphoreDeviceIndices, waitSemaphoreCount);
+            AddPointerWithCountToTracebuffer(VkDeviceGroupSubmitInfoKHX, uint32_t, pCommandBufferDeviceMasks, commandBufferCount);
+            AddPointerWithCountToTracebuffer(VkDeviceGroupSubmitInfoKHX, uint32_t, pSignalSemaphoreDeviceIndices, signalSemaphoreCount);
             break;
         case VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHX:
-            AddPointerWithCountToTracebuffer(VkBindBufferMemoryDeviceGroupInfoKHX, pDeviceIndices, deviceIndexCount);
+            AddPointerWithCountToTracebuffer(VkBindBufferMemoryDeviceGroupInfoKHX, uint32_t, pDeviceIndices, deviceIndexCount);
             break;
         case VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHX:
-            AddPointerWithCountToTracebuffer(VkBindImageMemoryDeviceGroupInfoKHX, pDeviceIndices, deviceIndexCount);
-            AddPointerWithCountToTracebuffer(VkBindImageMemoryDeviceGroupInfoKHX, pSFRRects, SFRRectCount);
+            AddPointerWithCountToTracebuffer(VkBindImageMemoryDeviceGroupInfoKHX, uint32_t, pDeviceIndices, deviceIndexCount);
+            AddPointerWithCountToTracebuffer(VkBindImageMemoryDeviceGroupInfoKHX, VkRect2D, pSFRRects, SFRRectCount);
             break;
         case VK_STRUCTURE_TYPE_VALIDATION_FLAGS_EXT:
-            AddPointerWithCountToTracebuffer(VkValidationFlagsEXT, pDisabledValidationChecks, disabledValidationCheckCount);
+            AddPointerWithCountToTracebuffer(VkValidationFlagsEXT, VkValidationCheckEXT, pDisabledValidationChecks, disabledValidationCheckCount);
             break;
         case VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NVX:
-            AddPointerWithCountToTracebuffer(VkIndirectCommandsLayoutCreateInfoNVX, pTokens, tokenCount);
+            AddPointerWithCountToTracebuffer(VkIndirectCommandsLayoutCreateInfoNVX, VkIndirectCommandsLayoutTokenNVX, pTokens, tokenCount);
             break;
         case VK_STRUCTURE_TYPE_CMD_PROCESS_COMMANDS_INFO_NVX:
-            AddPointerWithCountToTracebuffer(VkCmdProcessCommandsInfoNVX, pIndirectCommandsTokens, indirectCommandsTokenCount);
+            AddPointerWithCountToTracebuffer(VkCmdProcessCommandsInfoNVX, VkIndirectCommandsTokenNVX, pIndirectCommandsTokens, indirectCommandsTokenCount);
             break;
         case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV:
-            AddPointerWithCountToTracebuffer(VkPipelineViewportWScalingStateCreateInfoNV, pViewportWScalings, viewportCount);
+            AddPointerWithCountToTracebuffer(VkPipelineViewportWScalingStateCreateInfoNV, VkViewportWScalingNV, pViewportWScalings, viewportCount);
             break;
         case VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV:
-            AddPointerWithCountToTracebuffer(VkPipelineViewportSwizzleStateCreateInfoNV, pViewportSwizzles, viewportCount);
+            AddPointerWithCountToTracebuffer(VkPipelineViewportSwizzleStateCreateInfoNV, VkViewportSwizzleNV, pViewportSwizzles, viewportCount);
             break;
         case VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT:
-            AddPointerWithCountToTracebuffer(VkPipelineDiscardRectangleStateCreateInfoEXT, pDiscardRectangles, discardRectangleCount);
+            AddPointerWithCountToTracebuffer(VkPipelineDiscardRectangleStateCreateInfoEXT, VkRect2D, pDiscardRectangles, discardRectangleCount);
             break;
         case VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT:
-            AddPointerWithCountToTracebuffer(VkSampleLocationsInfoEXT, pSampleLocations, sampleLocationsCount);
+            AddPointerWithCountToTracebuffer(VkSampleLocationsInfoEXT, VkSampleLocationEXT, pSampleLocations, sampleLocationsCount);
             break;
         case VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT:
-            AddPointerWithCountToTracebuffer(VkRenderPassSampleLocationsBeginInfoEXT, pAttachmentInitialSampleLocations, attachmentInitialSampleLocationsCount);
-            AddPointerWithCountToTracebuffer(VkRenderPassSampleLocationsBeginInfoEXT, pPostSubpassSampleLocations, postSubpassSampleLocationsCount);
+            AddPointerWithCountToTracebuffer(VkRenderPassSampleLocationsBeginInfoEXT, VkAttachmentSampleLocationsEXT, pAttachmentInitialSampleLocations, attachmentInitialSampleLocationsCount);
+            AddPointerWithCountToTracebuffer(VkRenderPassSampleLocationsBeginInfoEXT, VkSubpassSampleLocationsEXT, pPostSubpassSampleLocations, postSubpassSampleLocationsCount);
             break;
         case VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV:
-            AddPointerWithCountToTracebuffer(VkPipelineCoverageModulationStateCreateInfoNV, pCoverageModulationTable, coverageModulationTableCount);
+            AddPointerWithCountToTracebuffer(VkPipelineCoverageModulationStateCreateInfoNV, VkCoverageModulationModeNV, pCoverageModulationTable, coverageModulationTableCount);
             break;
         case VK_STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO_KHR:
-            AddPointerWithCountToTracebuffer(VkImageFormatListCreateInfoKHR, pViewFormats, viewFormatCount);
+            AddPointerWithCountToTracebuffer(VkImageFormatListCreateInfoKHR, VkFormat, pViewFormats, viewFormatCount);
             break;
         case VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO_KHX:
-            AddPointerWithCountToTracebuffer(VkRenderPassMultiviewCreateInfoKHX, pViewMasks, subpassCount);
-            AddPointerWithCountToTracebuffer(VkRenderPassMultiviewCreateInfoKHX, pViewOffsets, dependencyCount);
-            AddPointerWithCountToTracebuffer(VkRenderPassMultiviewCreateInfoKHX, pCorrelationMasks, correlationMaskCount);
+            AddPointerWithCountToTracebuffer(VkRenderPassMultiviewCreateInfoKHX, uint32_t, pViewMasks, subpassCount);
+            AddPointerWithCountToTracebuffer(VkRenderPassMultiviewCreateInfoKHX, int32_t, pViewOffsets, dependencyCount);
+            AddPointerWithCountToTracebuffer(VkRenderPassMultiviewCreateInfoKHX, uint32_t, pCorrelationMasks, correlationMaskCount);
             break;
 #ifdef WIN32
         case VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR:
-            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, pAcquireSyncs, acquireCount);
-            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, pAcquireKeys, acquireCount);
-            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, pAcquireTimeouts, acquireCount);
-            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, pReleaseSyncs, releaseCount);
-            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, pReleaseKeys, releaseCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, VkDeviceMemory, pAcquireSyncs, acquireCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, uint64_t, pAcquireKeys, acquireCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, uint32_t, pAcquireTimeouts, acquireCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, VkDeviceMemory, pReleaseSyncs, releaseCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, uint64_t, pReleaseKeys, releaseCount);
             break;
         case VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV:
-            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, pAcquireSyncs, acquireCount);
-            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, pAcquireKeys, acquireCount);
-            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, pAcquireTimeoutMilliseconds, acquireCount);
-            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, pReleaseSyncs, releaseCount);
-            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, pReleaseKeys, releaseCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, VkDeviceMemory, pAcquireSyncs, acquireCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, uint64_t, pAcquireKeys, acquireCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, uint32_t, pAcquireTimeoutMilliseconds, acquireCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, VkDeviceMemory, pReleaseSyncs, releaseCount);
+            AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoNV, uint64_t, pReleaseKeys, releaseCount);
             break;
 #endif
         default:
