@@ -88,7 +88,7 @@ void vktrace_add_buffer_to_trace_packet(vktrace_trace_packet_header* pHeader, vo
                                         const void* pBuffer);
 
 // adds pNext structures to a trace packet
-void vktrace_add_pnext_structs_to_trace_packet(vktrace_trace_packet_header* pHeader, void **ppOut, const void *pIn);
+void vktrace_add_pnext_structs_to_trace_packet(vktrace_trace_packet_header* pHeader, void *pOut, const void *pIn);
 
 // converts buffer pointers into byte offset so that pointer can be interpretted after being read into memory
 void vktrace_finalize_buffer_address(vktrace_trace_packet_header* pHeader, void** ptr_address);

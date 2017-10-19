@@ -2422,19 +2422,19 @@ class VkTraceFileOutputGenerator(OutputGenerator):
                 for pp_dict in ptr_packet_update_list: # buff_ptr_indices:
                     trace_vk_src += '    %s;\n' % (pp_dict['add_txt'])
                     if '(pPacket->pCreateInfo)' in pp_dict['add_txt']:
-                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void **)&(pPacket->pCreateInfo), (void *)pCreateInfo->pNext);\n'
+                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)pPacket->pCreateInfo, (void *)pCreateInfo);\n'
                     if '(pPacket->pBeginInfo)' in pp_dict['add_txt']:
-                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void **)&(pPacket->pBeginInfo), (void *)pBeginInfo->pNext);\n'
+                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)pPacket->pBeginInfo, (void *)pBeginInfo);\n'
                     if '(pPacket->pAllocateInfo)' in pp_dict['add_txt']:
-                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void **)&(pPacket->pAllocateInfo), (void *)pAllocateInfo->pNext);\n'
+                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)pPacket->pAllocateInfo, (void *)pAllocateInfo);\n'
                     if '(pPacket->pReserveSpaceInfo)' in pp_dict['add_txt']:
-                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void **)&(pPacket->pReserveSpaceInfo), (void *)pReserveSpaceInfo->pNext);\n'
+                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)pPacket->pReserveSpaceInfo, (void *)pReserveSpaceInfo);\n'
                     if '(pPacket->pLimits)' in pp_dict['add_txt']:
-                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void **)&(pPacket->pLimits), (void *)pLimits->pNext);\n'
+                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)pPacket->pLimits, (void *)pLimits);\n'
                     if ('(pPacket->pFeatures)' in pp_dict['add_txt'] and ('KHR' in pp_dict['add_txt'] or ('NVX' in pp_dict['add_txt']))):
-                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void **)&(pPacket->pFeatures), (void *)pFeatures->pNext);\n'
+                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)pPacket->pFeatures, (void *)pFeatures);\n'
                     if ('(pPacket->pSurfaceInfo)' in pp_dict['add_txt'] and ('2KHR' in pp_dict['add_txt'])):
-                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void **)&(pPacket->pSurfaceInfo), (void *)pSurfaceInfo->pNext);\n'
+                        trace_vk_src += '    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)pPacket->pSurfaceInfo, (void *)pSurfaceInfo);\n'
                 if 'void' not in resulttype or '*' in resulttype:
                     trace_vk_src += '    pPacket->result = result;\n'
                 for pp_dict in ptr_packet_update_list:

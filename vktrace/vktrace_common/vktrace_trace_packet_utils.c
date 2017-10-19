@@ -264,12 +264,12 @@ void vktrace_finalize_buffer_address(vktrace_trace_packet_header* pHeader, void*
         vktrace_finalize_buffer_address(pHeader, pDst);                                  \
     } while (0)
 
-void vktrace_add_pnext_structs_to_trace_packet(vktrace_trace_packet_header* pHeader, void **ppOut, const void *pIn) {
+void vktrace_add_pnext_structs_to_trace_packet(vktrace_trace_packet_header* pHeader, void *pOut, const void *pIn) {
     void** ppOutNext;
     const void* pInNext;
     while (((VkApplicationInfo*)pIn)->pNext) {
-        ppOutNext = (void**)&(((VkApplicationInfo*)*ppOut)->pNext);
-        pInNext = (void*)((VkApplicationInfo*)*ppOut)->pNext;
+        ppOutNext = (void**)&(((VkApplicationInfo*)pOut)->pNext);
+        pInNext = (void*)((VkApplicationInfo*)pIn)->pNext;
         size_t size = get_struct_size(pInNext);
         if (size > 0) {
             vktrace_add_buffer_to_trace_packet(pHeader, ppOutNext, size, pInNext);
@@ -347,11 +347,11 @@ void vktrace_add_pnext_structs_to_trace_packet(vktrace_trace_packet_header* pHea
 #endif
             }
             vktrace_finalize_buffer_address(pHeader, ppOutNext);
-            ppOut = ppOutNext;
+            pOut = ppOutNext;
             pIn = pInNext;
         } else {
             // Skip and remove from chain, must be an unknown type
-            ((VkApplicationInfo*)*ppOut)->pNext = ((VkApplicationInfo*)*ppOutNext)->pNext;
+            ((VkApplicationInfo*)pOut)->pNext = ((VkApplicationInfo*)*ppOutNext)->pNext;
             pIn = pInNext;  // Should not remove from original struct, just skip
         }
     }
