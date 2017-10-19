@@ -615,10 +615,9 @@ VkDeviceGroupDeviceCreateInfoKHX* interpret_VkDeviceGroupDeviceCreateInfoKHX(vkt
 }
 #define InterpretPointerInPNext(_sName, _sPtrType, _sPtr) \
     do { \
-        _sName* struct_ptr_cur = (_sName*)struct_ptr; \
+        _sName* struct_ptr_cur = (_sName*)(((VkApplicationInfo *)struct_ptr)->pNext); \
         struct_ptr_cur->_sPtr = (_sPtrType*)vktrace_trace_packet_interpret_buffer_pointer(pHeader, (intptr_t)struct_ptr_cur->_sPtr); \
     } while(0)
-
 
 void vktrace_interpret_pnext_pointers(vktrace_trace_packet_header* pHeader, void* struct_ptr)
 {
@@ -632,7 +631,7 @@ void vktrace_interpret_pnext_pointers(vktrace_trace_packet_header* pHeader, void
         // Convert pointers in pNext structures
         switch (((VkApplicationInfo *)(((VkApplicationInfo *)struct_ptr)->pNext))->sType) {
         case  VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO: {
-                VkDescriptorSetLayoutCreateInfo* struct_ptr_cur = (VkDescriptorSetLayoutCreateInfo*)struct_ptr;
+                VkDescriptorSetLayoutCreateInfo* struct_ptr_cur = (VkDescriptorSetLayoutCreateInfo*)(((VkApplicationInfo *)struct_ptr)->pNext);
                 struct_ptr_cur->pBindings = (VkDescriptorSetLayoutBinding*)vktrace_trace_packet_interpret_buffer_pointer(pHeader, (intptr_t)struct_ptr_cur->pBindings);
                 for (uint32_t i = 0; i < struct_ptr_cur->bindingCount; i++) {
                     VkSampler** ppSamplers = (VkSampler**)&(struct_ptr_cur->pBindings[i].pImmutableSamplers);
