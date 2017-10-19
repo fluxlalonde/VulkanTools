@@ -172,8 +172,6 @@ VkResult vkReplay::manually_replay_vkCreateInstance(packet_vkCreateInstance *pPa
         VkInstance inst;
 
         const char strScreenShot[] = "VK_LAYER_LUNARG_screenshot";
-        if (pPacket->pCreateInfo)
-            vktrace_interpret_pnext_pointers(pPacket->header, (void *)pPacket->pCreateInfo);
         pCreateInfo = (VkInstanceCreateInfo *)pPacket->pCreateInfo;
         if (g_pReplaySettings->screenshotList != NULL) {
             // enable screenshot layer if it is available and not already in list
@@ -368,8 +366,6 @@ VkResult vkReplay::manually_replay_vkCreateDevice(packet_vkCreateDevice *pPacket
         }
         const char strScreenShot[] = "VK_LAYER_LUNARG_screenshot";
 
-        if (pPacket->pCreateInfo)
-            vktrace_interpret_pnext_pointers(pPacket->header, (void *)pPacket->pCreateInfo);
         pCreateInfo = (VkDeviceCreateInfo *)pPacket->pCreateInfo;
         if (g_pReplaySettings->screenshotList != NULL) {
             // enable screenshot layer if it is available and not already in list
@@ -487,9 +483,6 @@ VkResult vkReplay::manually_replay_vkCreateBuffer(packet_vkCreateBuffer *pPacket
     // Check to see if buffer has already been created
     if (VK_NULL_HANDLE != m_objMapper.remap_buffers(*(pPacket->pBuffer))) return VK_SUCCESS;
 
-    if (pPacket->pCreateInfo)
-        vktrace_interpret_pnext_pointers(pPacket->header, (void *)pPacket->pCreateInfo);
-
     // Convert queueFamilyIndices
     if (pPacket->pCreateInfo) {
         for (uint32_t i = 0; i < pPacket->pCreateInfo->queueFamilyIndexCount; i++) {
@@ -524,9 +517,6 @@ VkResult vkReplay::manually_replay_vkCreateImage(packet_vkCreateImage *pPacket) 
     // Check to see if image has already been created
     if (VK_NULL_HANDLE != m_objMapper.remap_images(*(pPacket->pImage))) return VK_SUCCESS;
 
-    if (pPacket->pCreateInfo)
-        vktrace_interpret_pnext_pointers(pPacket->header, (void *)pPacket->pCreateInfo);
-
     // Convert queueFamilyIndices
     if (pPacket->pCreateInfo) {
         for (uint32_t i = 0; i < pPacket->pCreateInfo->queueFamilyIndexCount; i++) {
@@ -559,9 +549,6 @@ VkResult vkReplay::manually_replay_vkCreateCommandPool(packet_vkCreateCommandPoo
     }
 
     // No need to remap pAllocator
-
-    if (pPacket->pCreateInfo)
-        vktrace_interpret_pnext_pointers(pPacket->header, (void *)pPacket->pCreateInfo);
 
     // Convert queueFamilyIndex
     if (pPacket->pCreateInfo) {
@@ -671,9 +658,6 @@ VkResult vkReplay::manually_replay_vkQueueSubmit(packet_vkQueueSubmit *pPacket) 
     remappedSubmits = VKTRACE_NEW_ARRAY(VkSubmitInfo, pPacket->submitCount);
     VkCommandBuffer *pRemappedBuffers = NULL;
     VkSemaphore *pRemappedWaitSems = NULL, *pRemappedSignalSems = NULL;
-
-    for (uint32_t i=0; i<pPacket->submitCount; i++)
-        vktrace_interpret_pnext_pointers(pPacket->header, (void *)&pPacket->pSubmits[i]);
 
     for (uint32_t submit_idx = 0; submit_idx < pPacket->submitCount; submit_idx++) {
         const VkSubmitInfo *submit = &pPacket->pSubmits[submit_idx];
@@ -942,8 +926,6 @@ void vkReplay::manually_replay_vkUpdateDescriptorSets(packet_vkUpdateDescriptorS
             break;
         }
 
-        vktrace_interpret_pnext_pointers(pPacket->header, (void *)&pRemappedWrites[i]);
-
         pRemappedWrites[i] = pPacket->pDescriptorWrites[i];
         pRemappedWrites[i].dstSet = dstSet;
         pRemappedWrites[i].pBufferInfo = nullptr;
@@ -1070,7 +1052,6 @@ void vkReplay::manually_replay_vkUpdateDescriptorSets(packet_vkUpdateDescriptorS
             errorBadRemap = true;
             break;
         }
-        vktrace_interpret_pnext_pointers(pPacket->header, (void *)&pRemappedCopies[i]);
     }
 
     if (!errorBadRemap) {
@@ -3790,9 +3771,6 @@ VkResult vkReplay::manually_replay_vkRegisterDeviceEventEXT(packet_vkRegisterDev
         return VK_ERROR_VALIDATION_FAILED_EXT;
     }
 
-    if (pPacket->pDeviceEventInfo)
-        vktrace_interpret_pnext_pointers(pPacket->header, (void *)pPacket->pDeviceEventInfo);
-
     // No need to remap pDeviceEventInfo
     // No need to remap pAllocator
     VkFence fence;
@@ -3815,9 +3793,6 @@ VkResult vkReplay::manually_replay_vkRegisterDisplayEventEXT(packet_vkRegisterDi
         return VK_ERROR_VALIDATION_FAILED_EXT;
     }
 
-    if (pPacket->pDisplayEventInfo)
-        vktrace_interpret_pnext_pointers(pPacket->header, (void *)pPacket->pDisplayEventInfo);
-
     // No need to remap pDisplayEventInfo
     // No need to remap pAllocator
     VkFence fence;
@@ -3839,9 +3814,6 @@ VkResult vkReplay::manually_replay_vkCreateObjectTableNVX(packet_vkCreateObjectT
     // No need to remap pCreateINfo
     // No need to remap pAllocator
     // No need to remap pObjecTable
-
-    if (pPacket->pCreateInfo)
-        vktrace_interpret_pnext_pointers(pPacket->header, (void *)pPacket->pCreateInfo);
 
     // Remap fields in pCreateInfo
     *((VkObjectEntryTypeNVX **)&pPacket->pCreateInfo->pObjectEntryTypes) =
@@ -3867,9 +3839,6 @@ void vkReplay::manually_replay_vkCmdProcessCommandsNVX(packet_vkCmdProcessComman
 
     // No need to remap pProcessCommandsInfo
 
-    if (pPacket->pProcessCommandsInfo)
-        vktrace_interpret_pnext_pointers(pPacket->header, (void *)pPacket->pProcessCommandsInfo);
-
     // Remap fields in pProcessCommandsInfo
     *((VkIndirectCommandsTokenNVX **)&pPacket->pProcessCommandsInfo->pIndirectCommandsTokens) =
         (VkIndirectCommandsTokenNVX *)vktrace_trace_packet_interpret_buffer_pointer(pPacket->header, (intptr_t)pPacket->pProcessCommandsInfo->pIndirectCommandsTokens);
@@ -3892,8 +3861,6 @@ VkResult vkReplay::manually_replay_vkCreateIndirectCommandsLayoutNVX(packet_vkCr
     // No need to remap pAllocator
 
     // Remap fields in pCreateInfo
-    if (pPacket->pCreateInfo)
-        vktrace_interpret_pnext_pointers(pPacket->header, (void *)pPacket->pCreateInfo);
     *((VkIndirectCommandsLayoutTokenNVX **)&pPacket->pCreateInfo->pTokens) =
         (VkIndirectCommandsLayoutTokenNVX *)vktrace_trace_packet_interpret_buffer_pointer(pPacket->header, (intptr_t)pPacket->pCreateInfo->pTokens);
 
