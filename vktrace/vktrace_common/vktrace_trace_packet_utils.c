@@ -267,6 +267,9 @@ void vktrace_finalize_buffer_address(vktrace_trace_packet_header* pHeader, void*
 void vktrace_add_pnext_structs_to_trace_packet(vktrace_trace_packet_header* pHeader, void *pOut, const void *pIn) {
     void** ppOutNext;
     const void* pInNext;
+    if (!pIn)
+        return;
+    // Add the pNext chain to trace packet.
     while (((VkApplicationInfo*)pIn)->pNext) {
         ppOutNext = (void**)&(((VkApplicationInfo*)pOut)->pNext);
         pInNext = (void*)((VkApplicationInfo*)pIn)->pNext;
@@ -329,6 +332,30 @@ void vktrace_add_pnext_structs_to_trace_packet(vktrace_trace_packet_header* pHea
                     AddPointerWithCountToTracebuffer(VkRenderPassMultiviewCreateInfoKHX, int32_t, pViewOffsets, dependencyCount);
                     AddPointerWithCountToTracebuffer(VkRenderPassMultiviewCreateInfoKHX, uint32_t, pCorrelationMasks, correlationMaskCount);
                     break;
+#if 0
+                case VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO:
+                    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)ppOutNext)->pStages,
+                                                              (void *)(((VkGraphicsPipelineCreateInfo *)pIn)->pStages));
+                    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)ppOutNext)->pVertexInputState,
+                                                              (void *)(((VkGraphicsPipelineCreateInfo *)pIn)->pVertexInputState));
+                    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)ppOutNext)->pInputAssemblyState,
+                                                              (void *)(((VkGraphicsPipelineCreateInfo *)pIn)->pInputAssemblyState));
+                    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)ppOutNext)->pTessellationState,
+                                                              (void *)(((VkGraphicsPipelineCreateInfo *)pIn)->pTessellationState));
+                    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)ppOutNext)->pViewportState,
+                                                              (void *)(((VkGraphicsPipelineCreateInfo *)pIn)->pViewportState));
+                    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)ppOutNext)->pRasterizationState,
+                                                              (void *)(((VkGraphicsPipelineCreateInfo *)pIn)->pRasterizationState));
+                    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)ppOutNext)->pMultisampleState,
+                                                              (void *)(((VkGraphicsPipelineCreateInfo *)pIn)->pMultisampleState));
+                    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)ppOutNext)->pDepthStencilState,
+                                                              (void *)(((VkGraphicsPipelineCreateInfo *)pIn)->pDepthStencilState));
+                    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)ppOutNext)->pColorBlendState,
+                                                              (void *)(((VkGraphicsPipelineCreateInfo *)pIn)->pColorBlendState));
+                    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)ppOutNext)->pDynamicState,
+                                                              (void *)(((VkGraphicsPipelineCreateInfo *)pIn)->pDynamicState));
+                    break;
+#endif
 #ifdef WIN32
                 case VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR:
                     AddPointerWithCountToTracebuffer(VkWin32KeyedMutexAcquireReleaseInfoKHR, VkDeviceMemory, pAcquireSyncs, acquireCount);
@@ -425,6 +452,7 @@ void* vktrace_trace_packet_interpret_buffer_pointer(vktrace_trace_packet_header*
 void add_VkApplicationInfo_to_packet(vktrace_trace_packet_header* pHeader, VkApplicationInfo** ppStruct,
                                      const VkApplicationInfo* pInStruct) {
     vktrace_add_buffer_to_trace_packet(pHeader, (void**)ppStruct, sizeof(VkApplicationInfo), pInStruct);
+    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void**)ppStruct, (void *)pInStruct);
     vktrace_add_buffer_to_trace_packet(
         pHeader, (void**)&((*ppStruct)->pApplicationName),
         (pInStruct->pApplicationName != NULL) ? ROUNDUP_TO_4(strlen(pInStruct->pApplicationName) + 1) : 0,
@@ -440,6 +468,7 @@ void add_VkApplicationInfo_to_packet(vktrace_trace_packet_header* pHeader, VkApp
 void add_VkInstanceCreateInfo_to_packet(vktrace_trace_packet_header* pHeader, VkInstanceCreateInfo** ppStruct,
                                         VkInstanceCreateInfo* pInStruct) {
     vktrace_add_buffer_to_trace_packet(pHeader, (void**)ppStruct, sizeof(VkInstanceCreateInfo), pInStruct);
+    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void**)ppStruct, (void *)pInStruct);
     if (pInStruct->pApplicationInfo)
         add_VkApplicationInfo_to_packet(pHeader, (VkApplicationInfo**)&((*ppStruct)->pApplicationInfo),
                                         pInStruct->pApplicationInfo);
@@ -471,12 +500,15 @@ void add_VkInstanceCreateInfo_to_packet(vktrace_trace_packet_header* pHeader, Vk
 
 void add_VkDeviceCreateInfo_to_packet(vktrace_trace_packet_header* pHeader, VkDeviceCreateInfo** ppStruct,
                                       const VkDeviceCreateInfo* pInStruct) {
+    uint32_t i, siz = 0;
     vktrace_add_buffer_to_trace_packet(pHeader, (void**)ppStruct, sizeof(VkDeviceCreateInfo), pInStruct);
+    vktrace_add_pnext_structs_to_trace_packet(pHeader, (void**)ppStruct, (void *)pInStruct);
     vktrace_add_buffer_to_trace_packet(pHeader, (void**)&(*ppStruct)->pQueueCreateInfos,
                                        pInStruct->queueCreateInfoCount * sizeof(VkDeviceQueueCreateInfo),
                                        pInStruct->pQueueCreateInfos);
-    uint32_t i, siz = 0;
     for (i = 0; i < pInStruct->queueCreateInfoCount; i++) {
+		vktrace_add_pnext_structs_to_trace_packet(pHeader, (void**)&(*ppStruct)->pQueueCreateInfos[i].pQueuePriorities,
+			                                      (void *)&pInStruct->pQueueCreateInfos[i]);
         vktrace_add_buffer_to_trace_packet(pHeader, (void**)&(*ppStruct)->pQueueCreateInfos[i].pQueuePriorities,
                                            pInStruct->pQueueCreateInfos[i].queueCount * sizeof(float),
                                            pInStruct->pQueueCreateInfos[i].pQueuePriorities);
@@ -631,11 +663,15 @@ void vktrace_interpret_pnext_pointers(vktrace_trace_packet_header* pHeader, void
         return;
 
     while (((VkApplicationInfo *)struct_ptr)->pNext) {
+
+        // Convert the pNext pointer
         VkApplicationInfo *pNext = (VkApplicationInfo *)((VkApplicationInfo *)struct_ptr)->pNext;
         ((VkApplicationInfo *)struct_ptr)->pNext = (void *)vktrace_trace_packet_interpret_buffer_pointer(pHeader, (intptr_t)pNext);
 
         // Convert pointers in pNext structures
         switch (((VkApplicationInfo *)(((VkApplicationInfo *)struct_ptr)->pNext))->sType) {
+        case VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO:
+
         case  VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO: {
                 VkDescriptorSetLayoutCreateInfo* struct_ptr_cur = (VkDescriptorSetLayoutCreateInfo*)(((VkApplicationInfo *)struct_ptr)->pNext);
                 struct_ptr_cur->pBindings = (VkDescriptorSetLayoutBinding*)vktrace_trace_packet_interpret_buffer_pointer(pHeader, (intptr_t)struct_ptr_cur->pBindings);
@@ -699,6 +735,20 @@ void vktrace_interpret_pnext_pointers(vktrace_trace_packet_header* pHeader, void
             InterpretPointerInPNext(VkRenderPassMultiviewCreateInfoKHX, int32_t, pViewOffsets);
             InterpretPointerInPNext(VkRenderPassMultiviewCreateInfoKHX, uint32_t, pCorrelationMasks);
             break;
+#if 0
+        case VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO:
+             vktrace_interpret_pnext_pointers(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)struct_ptr)->pStages);
+             vktrace_interpret_pnext_pointers(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)struct_ptr)->pVertexInputState);
+             vktrace_interpret_pnext_pointers(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)struct_ptr)->pInputAssemblyState);
+             vktrace_interpret_pnext_pointers(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)struct_ptr)->pTessellationState);
+             vktrace_interpret_pnext_pointers(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)struct_ptr)->pViewportState);
+             vktrace_interpret_pnext_pointers(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)struct_ptr)->pRasterizationState);
+             vktrace_interpret_pnext_pointers(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)struct_ptr)->pMultisampleState);
+             vktrace_interpret_pnext_pointers(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)struct_ptr)->pDepthStencilState);
+             vktrace_interpret_pnext_pointers(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)struct_ptr)->pColorBlendState);
+             vktrace_interpret_pnext_pointers(pHeader, (void *)((VkGraphicsPipelineCreateInfo *)struct_ptr)->pDynamicState);
+            break;
+#endif
 #ifdef WIN32
         case VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR:
             InterpretPointerInPNext(VkWin32KeyedMutexAcquireReleaseInfoKHR, VkDeviceMemory, pAcquireSyncs);
