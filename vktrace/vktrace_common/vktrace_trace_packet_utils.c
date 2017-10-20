@@ -716,7 +716,9 @@ void vktrace_interpret_pnext_pointers(vktrace_trace_packet_header* pHeader, void
             break;
 #endif
         default:
-            vktrace_LogError("Unrecognized pNext structure in trace packet");
+            // The cases in this switch statement are only those pnext struct types that have
+            // pointers inside them that need to be interpreted. The pnext list may contain
+            // struct types that don't have pointers in them, which we simply skip over.
             break;
         }
         struct_ptr = (VkApplicationInfo *)((VkApplicationInfo *)struct_ptr)->pNext;

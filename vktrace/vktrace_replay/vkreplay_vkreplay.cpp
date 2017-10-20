@@ -1997,7 +1997,6 @@ VkResult vkReplay::manually_replay_vkAllocateMemory(packet_vkAllocateMemory *pPa
     }
 
     if (pPacket->pAllocateInfo) {
-        vktrace_interpret_pnext_pointers(pPacket->header, (void *)pPacket->pAllocateInfo);
         const void *pNext = pPacket->pAllocateInfo->pNext;
         while (pNext) {
             VkDedicatedAllocationMemoryAllocateInfoNV *x = (VkDedicatedAllocationMemoryAllocateInfoNV *)(pPacket->pAllocateInfo->pNext);
