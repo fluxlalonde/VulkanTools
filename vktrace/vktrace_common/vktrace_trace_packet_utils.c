@@ -374,7 +374,7 @@ void vktrace_add_pnext_structs_to_trace_packet(vktrace_trace_packet_header* pHea
 #endif
             }
             vktrace_finalize_buffer_address(pHeader, ppOutNext);
-            pOut = ppOutNext;
+            pOut = *ppOutNext;
             pIn = pInNext;
         } else {
             // Skip and remove from chain, must be an unknown type
