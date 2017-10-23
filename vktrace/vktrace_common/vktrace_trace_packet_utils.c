@@ -378,7 +378,7 @@ void vktrace_add_pnext_structs_to_trace_packet(vktrace_trace_packet_header* pHea
             pIn = pInNext;
         } else {
             // Skip and remove from chain, must be an unknown type
-            ((VkApplicationInfo*)pOut)->pNext = ((VkApplicationInfo*)*ppOutNext)->pNext;
+            ((VkApplicationInfo*)pOut)->pNext = *ppOutNext ? ((VkApplicationInfo*)*ppOutNext)->pNext : NULL;
             pIn = pInNext;  // Should not remove from original struct, just skip
         }
     }
